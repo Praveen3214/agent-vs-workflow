@@ -1,0 +1,10 @@
+# --- Core engine ---
+groq>=0.11.0           # Groq LLM API client (OpenAI-compatible, free tier)
+ddgs>=6.0.0            # DuckDuckGo search (free, no API key) — formerly duckduckgo_search
+trafilatura>=1.9.0    # Robust main-text extraction from web pages
+requests>=2.31.0      # HTTP fetching
+python-dotenv>=1.0.0  # Load GROQ_API_KEY from .env
+
+# --- Web UI (FastAPI + Tailwind single page) ---
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0

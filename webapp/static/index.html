@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive-Research Brief Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .prose-brief h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
+    .prose-brief h2 { font-size: 1.05rem; font-weight: 600; margin: 1.1rem 0 .35rem; color:#0f766e; }
+    .prose-brief h3 { font-size: .95rem; font-weight: 600; margin: 1rem 0 .3rem; }
+    .prose-brief ul { list-style: disc; margin-left: 1.25rem; margin-bottom:.5rem; }
+    .prose-brief ol { list-style: decimal; margin-left: 1.25rem; }
+    .prose-brief p { margin: .35rem 0; }
+    .prose-brief hr { margin: 1rem 0; border-color:#e2e8f0; }
+    .prose-brief a { color:#0d9488; text-decoration: underline; word-break: break-all; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+  <div class="max-w-5xl mx-auto px-5 py-8">
+
+    <!-- Header -->
+    <header class="mb-6">
+      <h1 class="text-2xl font-bold tracking-tight text-slate-900">
+        Competitive-Research Brief Generator
+      </h1>
+      <p class="text-sm text-slate-500 mt-1">
+        Same task, two engines — a deterministic <b>workflow</b> vs an autonomous
+        <b>agent</b>. Watch the cost and latency differ in real time.
+      </p>
+    </header>
+
+    <div class="grid md:grid-cols-5 gap-6">
+      <!-- Controls -->
+      <section class="md:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+        <label class="block text-sm font-medium text-slate-700 mb-1">Subject type</label>
+        <select id="kind"
+          class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4">
+          <option value="company">Company</option>
+          <option value="leader">Political leader</option>
+          <option value="party">Political party</option>
+          <option value="topic">Topic / current event</option>
+        </select>
+
+        <label id="company-label" class="block text-sm font-medium text-slate-700 mb-1">Company or topic</label>
+        <input id="company" type="text" placeholder="e.g. Notion"
+          class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+        <p id="kind-note" class="hidden text-[11px] text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-2 py-1 mt-2">
+          ⚖️ Neutral, source-cited summary of public information. Verify before relying — it may contain errors.
+        </p>
+
+        <label class="block text-sm font-medium text-slate-700 mt-4 mb-1">
+          Source URLs <span class="text-slate-400 font-normal">(optional, one per line)</span>
+        </label>
+        <textarea id="urls" rows="3" placeholder="https://...&#10;https://..."
+          class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+
+        <div class="mt-4">
+          <span class="block text-sm font-medium text-slate-700 mb-2">Engine</span>
+          <div class="inline-flex rounded-lg border border-slate-300 overflow-hidden text-sm">
+            <button id="mode-workflow" class="px-4 py-2 bg-teal-600 text-white font-medium">Workflow</button>
+            <button id="mode-agent" class="px-4 py-2 bg-white text-slate-600">Agent</button>
+          </div>
+          <p id="mode-hint" class="text-xs text-slate-500 mt-2">
+            Fixed pipeline: gather → summarise (cheap model) → synthesise (smart model). Predictable & cheap.
+          </p>
+        </div>
+
+        <button id="run" class="mt-5 w-full bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg py-2.5 text-sm transition">
+          Generate brief
+        </button>
+
+        <!-- Free-quota badge -->
+        <p id="quota-line" class="text-xs text-center text-slate-500 mt-2"></p>
+
+        <!-- Bring-your-own-key (revealed after free briefs run out) -->
+        <div id="key-box" class="hidden mt-3 bg-teal-50 border border-teal-200 rounded-lg p-3">
+          <p id="key-msg" class="text-xs text-teal-800 mb-2 font-medium">
+            Add your own free Groq key to keep generating — unlimited, runs on your own quota.
+          </p>
+          <input id="apikey" type="password" placeholder="gsk_..."
+            class="w-full border border-teal-300 rounded-md px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-teal-500" />
+          <div class="flex items-center justify-between mt-1.5">
+            <a href="https://console.groq.com/keys" target="_blank" rel="noopener"
+               class="text-[11px] text-teal-700 underline">Get a free key →</a>
+            <span id="key-saved" class="text-[11px] text-slate-400"></span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1.5">Your key stays in your browser and is sent only with your request — never stored on the server.</p>
+        </div>
+
+        <button id="key-toggle" class="text-[11px] text-slate-400 hover:text-teal-600 underline mt-2">Use my own Groq key</button>
+      </section>
+
+      <!-- Output -->
+      <section class="md:col-span-3 space-y-4">
+        <!-- Metrics strip -->
+        <div id="metrics" class="hidden bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+          <div class="grid grid-cols-4 gap-3 text-center">
+            <div><div id="m-cost" class="text-lg font-bold text-slate-900">–</div><div class="text-[11px] uppercase tracking-wide text-slate-400">Cost</div></div>
+            <div><div id="m-tokens" class="text-lg font-bold text-slate-900">–</div><div class="text-[11px] uppercase tracking-wide text-slate-400">Tokens</div></div>
+            <div><div id="m-time" class="text-lg font-bold text-slate-900">–</div><div class="text-[11px] uppercase tracking-wide text-slate-400">Wall time</div></div>
+            <div><div id="m-calls" class="text-lg font-bold text-slate-900">–</div><div class="text-[11px] uppercase tracking-wide text-slate-400">LLM · Tool</div></div>
+          </div>
+          <p id="m-notes" class="hidden text-xs text-amber-600 mt-2 text-center"></p>
+        </div>
+
+        <!-- Brief render -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 min-h-[260px]">
+          <div id="placeholder" class="text-slate-400 text-sm flex items-center justify-center h-full py-16 text-center">
+            Your brief will appear here.
+          </div>
+          <div id="spinner" class="hidden text-center py-16">
+            <div class="inline-block w-7 h-7 border-2 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+            <p id="spinner-text" class="text-sm text-slate-500 mt-3">Working…</p>
+          </div>
+          <article id="brief" class="prose-brief hidden text-sm leading-relaxed"></article>
+        </div>
+      </section>
+    </div>
+
+    <footer class="text-center text-xs text-slate-400 mt-8">
+      MIT-licensed portfolio build · the real deliverable is <code>DECISION_DOC.md</code>
+    </footer>
+  </div>
+
+  <script>
+    let mode = "workflow";
+    const $ = (id) => document.getElementById(id);
+
+    const hints = {
+      workflow: "Fixed pipeline: gather → summarise (cheap model) → synthesise (smart model). Predictable & cheap.",
+      agent: "Autonomous loop: the model picks its own tool calls until it decides it's done. Flexible but costlier & slower.",
+    };
+
+    function setMode(m) {
+      mode = m;
+      const wf = $("mode-workflow"), ag = $("mode-agent");
+      const on = "bg-teal-600 text-white font-medium", off = "bg-white text-slate-600";
+      wf.className = "px-4 py-2 " + (m === "workflow" ? on : off);
+      ag.className = "px-4 py-2 " + (m === "agent" ? on : off);
+      $("mode-hint").textContent = hints[m];
+    }
+    $("mode-workflow").onclick = () => setMode("workflow");
+    $("mode-agent").onclick = () => setMode("agent");
+
+    // --- Subject type selector ----------------------------------------------
+    const KINDS = {
+      company: { label: "Company or topic", ph: "e.g. Notion", sensitive: false },
+      leader:  { label: "Political leader's name", ph: "e.g. a sitting MP, senator, or party leader", sensitive: true },
+      party:   { label: "Political party's name", ph: "e.g. a national or regional party", sensitive: true },
+      topic:   { label: "Topic or question", ph: "e.g. any current event, concept, or question", sensitive: true },
+    };
+    function applyKind() {
+      const k = KINDS[$("kind").value] || KINDS.company;
+      $("company-label").textContent = k.label;
+      $("company").placeholder = k.ph;
+      $("kind-note").classList.toggle("hidden", !k.sensitive);
+    }
+    $("kind").onchange = applyKind;
+
+    // --- BYOK key handling (stored only in this browser) ---------------------
+    const savedKey = () => localStorage.getItem("groq_key") || "";
+    function showKeyBox(reveal, msg) {
+      $("key-box").classList.toggle("hidden", !reveal);
+      if (msg) $("key-msg").textContent = msg;
+      if (reveal) $("apikey").focus();
+    }
+    $("apikey").value = savedKey();
+    $("apikey").oninput = () => {
+      const v = $("apikey").value.trim();
+      if (v) { localStorage.setItem("groq_key", v); $("key-saved").textContent = "saved ✓"; }
+      else { localStorage.removeItem("groq_key"); $("key-saved").textContent = ""; }
+    };
+    if (savedKey()) { $("key-saved").textContent = "saved ✓"; showKeyBox(true); }
+    $("key-toggle").onclick = () => showKeyBox($("key-box").classList.contains("hidden"));
+
+    function renderQuota(remaining, limit) {
+      if (savedKey()) { $("quota-line").innerHTML = "Using <b>your own key</b> · unlimited"; return; }
+      if (remaining === null || remaining === undefined) { $("quota-line").textContent = ""; return; }
+      if (remaining > 0) $("quota-line").innerHTML = `<b>${remaining}</b> free brief${remaining===1?"":"s"} left` + (limit?` of ${limit}`:"");
+      else $("quota-line").innerHTML = "Free briefs used up — add your own key below";
+    }
+
+    async function loadQuota() {
+      try {
+        const r = await fetch("/api/quota");
+        const d = await r.json();
+        renderQuota(d.free_remaining, d.free_limit);
+        if (d.free_remaining === 0 && !savedKey()) showKeyBox(true);
+      } catch { /* offline / local without server is fine */ }
+    }
+
+    $("run").onclick = async () => {
+      const company = $("company").value.trim();
+      if (!company) { $("company").focus(); return; }
+      const urls = $("urls").value.split("\n").map(s => s.trim()).filter(Boolean);
+
+      $("placeholder").classList.add("hidden");
+      $("brief").classList.add("hidden");
+      $("metrics").classList.add("hidden");
+      $("spinner").classList.remove("hidden");
+      $("spinner-text").textContent = mode === "agent"
+        ? "Agent is choosing its own steps… this can take a bit." : "Running the workflow…";
+      $("run").disabled = true;
+
+      try {
+        const res = await fetch("/api/brief", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ company, mode, kind: $("kind").value, urls, api_key: savedKey() || null }),
+        });
+        const data = await res.json();
+        $("spinner").classList.add("hidden");
+
+        if (!data.ok) {
+          if (data.needs_key) {           // free quota gone → prompt for a key
+            renderQuota(0);
+            showKeyBox(true, data.error);
+            return;
+          }
+          $("brief").innerHTML = `<p class="text-red-600">${data.error}</p>`;
+          $("brief").classList.remove("hidden");
+          return;
+        }
+        renderQuota(data.free_remaining);   // reflect remaining free briefs
+        const m = data.metrics;
+        $("m-cost").textContent = "$" + m.cost_usd.toFixed(5);
+        $("m-tokens").textContent = m.total_tokens.toLocaleString();
+        $("m-time").textContent = m.wall_time_s + "s";
+        $("m-calls").textContent = m.llm_calls + " · " + m.tool_calls;
+        if (m.notes) { $("m-notes").textContent = "⚠ " + m.notes; $("m-notes").classList.remove("hidden"); }
+        else $("m-notes").classList.add("hidden");
+        $("metrics").classList.remove("hidden");
+
+        $("brief").innerHTML = marked.parse(data.markdown);
+        $("brief").classList.remove("hidden");
+      } catch (e) {
+        $("spinner").classList.add("hidden");
+        $("brief").innerHTML = `<p class="text-red-600">Request failed: ${e}</p>`;
+        $("brief").classList.remove("hidden");
+      } finally {
+        $("run").disabled = false;
+      }
+    };
+
+    setMode("workflow");
+    applyKind();
+    loadQuota();
+  </script>
+</body>
+</html>

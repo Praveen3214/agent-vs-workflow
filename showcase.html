@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive-Research Brief Generator — Product Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .code { background:#0f172a; color:#e2e8f0; border-radius:.6rem; padding:1rem 1.15rem; font-size:.82rem; line-height:1.6; overflow-x:auto; }
+    .code .c { color:#64748b; }      /* comment */
+    .code .k { color:#5eead4; }      /* command keyword */
+    .chip { background:#f0fdfa; color:#0f766e; border:1px solid #99f6e4; }
+    .fade-edge { background:linear-gradient(180deg,rgba(255,255,255,0)0%,#f8fafc 100%); }
+    section { scroll-margin-top: 5rem; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Sticky nav -->
+  <nav class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+      <span class="font-bold text-slate-900 text-sm tracking-tight">Brief Generator<span class="text-teal-600"> · Workflow vs Agent</span></span>
+      <div class="hidden sm:flex gap-5 text-sm text-slate-600">
+        <a href="#problem" class="hover:text-teal-600">Problem</a>
+        <a href="#what" class="hover:text-teal-600">What it is</a>
+        <a href="#how" class="hover:text-teal-600">How to use</a>
+        <a href="#skills" class="hover:text-teal-600">Skills</a>
+        <a href="#where" class="hover:text-teal-600">Where else</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-5 pt-16 pb-14 text-center">
+      <span class="chip inline-block text-xs font-semibold px-3 py-1 rounded-full mb-5">AI Program Management · Portfolio Build #1</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+        Competitive-Research<br class="hidden sm:block" /> Brief Generator
+      </h1>
+      <p class="mt-5 max-w-2xl mx-auto text-lg text-slate-600">
+        Turn a single company name into a clean, sourced one-page brief — built
+        <b>two ways</b> (a deterministic <b>workflow</b> and an autonomous <b>agent</b>)
+        to prove a senior judgment call with real numbers.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3 justify-center">
+        <a href="#how" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition">How to use it</a>
+        <a href="#what" class="bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-medium px-5 py-2.5 rounded-lg transition">What's the point</a>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3 justify-center text-sm">
+        <span class="bg-white border border-slate-200 rounded-lg px-4 py-2"><b class="text-teal-600">3.2×</b> cheaper than the agent <span class="text-slate-400">(measured)</span></span>
+        <span class="bg-white border border-slate-200 rounded-lg px-4 py-2"><b class="text-teal-600">$0</b> to run (free tier)</span>
+        <span class="bg-white border border-slate-200 rounded-lg px-4 py-2"><b class="text-teal-600">&lt;10 min</b> to set up</span>
+      </div>
+    </div>
+    <div class="h-10 fade-edge"></div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-5 pb-24 space-y-20">
+
+    <!-- PROBLEM STATEMENT -->
+    <section id="problem">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">The problem it solves</h2>
+      <p class="text-slate-500 mb-8 max-w-3xl">There are two problems here — one on the surface, one underneath. The second is the reason this project exists.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">1</span>
+            <h3 class="font-semibold text-slate-900">The everyday problem</h3>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-2">Company research is slow, manual, and repetitive.</p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            To understand a competitor, sales prospect, or investment, someone opens a dozen
+            tabs, skims long pages, copy-pastes the useful bits, organises it into something
+            readable, and tracks every source. That's <b>30–60 minutes of tedious work</b> per
+            company — and the output is inconsistent every time.
+          </p>
+          <p class="text-sm text-slate-600 mt-3">
+            👉 This tool turns <b>one company name</b> into a clean, sourced one-page brief in seconds.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-6 ring-1 ring-teal-200">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+            <h3 class="font-semibold text-slate-900">The deeper problem <span class="text-teal-600 font-normal text-sm">(the real point)</span></h3>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-2">Teams over-use autonomous "AI agents" and can't tell when they're the wrong choice.</p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Agents — AI that decides its own steps — are hyped. But when a task's steps are
+            already known, an agent is often <b>costlier, slower, and less reliable</b> than a
+            simple fixed sequence of steps (a <i>workflow</i>) — yet teams reach for the agent
+            anyway, burning cost and trust.
+          </p>
+          <p class="text-sm text-slate-600 mt-3">
+            👉 This project builds the <b>same task both ways</b>, measures them, and shows with
+            real numbers <b>when the simpler workflow wins</b>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IT IS / USE -->
+    <section id="what">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">What it is &amp; why it's useful</h2>
+      <p class="text-slate-500 mb-8 max-w-3xl">The tool is real and useful on its own — but the headline deliverable is the <b>decision</b> behind it.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <h3 class="font-semibold text-slate-900 mb-2">The everyday use</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Pick a <b>subject type</b> — a company, a <b>political leader</b>, a
+            <b>political party</b>, or <b>any topic / current event</b> — and type a name
+            (e.g. <span class="mono text-teal-700">"Notion"</span>). The tool searches the
+            web for free, reads the pages, and produces a structured, sourced brief in seconds:
+          </p>
+          <div class="mt-4 grid grid-cols-2 gap-2 text-sm">
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">📌 Overview</span>
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">🧩 Products</span>
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">🎯 Positioning</span>
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">📰 Recent news</span>
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">⚠️ Caveats &amp; gaps</span>
+            <span class="bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5">🔗 Cited sources</span>
+          </div>
+          <p class="mt-4 text-sm text-slate-600">It replaces 30–60 minutes of manual tab-opening, skim-reading, and copy-pasting.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <h3 class="font-semibold text-slate-900 mb-2">The real point</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            The same task is built <b>two ways</b> so the comparison is honest, not rhetorical:
+          </p>
+          <div class="mt-4 space-y-3 text-sm">
+            <div class="flex gap-3 items-start">
+              <span class="chip text-xs font-semibold px-2 py-0.5 rounded mt-0.5">WORKFLOW</span>
+              <span class="text-slate-600">A fixed pipeline — <span class="mono text-xs">gather → summarise → synthesise → format</span>. Predictable, cheap, debuggable.</span>
+            </div>
+            <div class="flex gap-3 items-start">
+              <span class="bg-amber-50 text-amber-700 border border-amber-200 text-xs font-semibold px-2 py-0.5 rounded mt-0.5">AGENT</span>
+              <span class="text-slate-600">An autonomous loop that picks its own tool calls until it decides it's done. Flexible, but costlier &amp; slower here.</span>
+            </div>
+          </div>
+          <p class="mt-4 text-sm text-slate-600">
+            The deliverable is <span class="mono text-xs bg-slate-100 px-1 py-0.5 rounded">DECISION_DOC.md</span>:
+            it argues <b>why a workflow beats an agent</b> for a task whose steps are known in advance —
+            backed by measured cost, latency, and failure-mode analysis. That's the senior signal:
+            <i>default to the simplest thing that works, and write down the trigger to upgrade.</i>
+          </p>
+        </div>
+      </div>
+
+      <!-- Comparison strip -->
+      <div class="mt-6 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-slate-500 text-left text-xs uppercase tracking-wide">
+            <tr><th class="px-5 py-3 font-medium">Dimension</th><th class="px-5 py-3 font-medium">Workflow (chosen)</th><th class="px-5 py-3 font-medium">Agent (for contrast)</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="px-5 py-3 text-slate-500">Control flow</td><td class="px-5 py-3">Fixed Python pipeline</td><td class="px-5 py-3">LLM-driven tool loop</td></tr>
+            <tr><td class="px-5 py-3 text-slate-500">Models</td><td class="px-5 py-3">Cheap 8B to summarise + smart 70B to synthesise</td><td class="px-5 py-3">Smart 70B every turn</td></tr>
+            <tr><td class="px-5 py-3 text-slate-500">Cost ceiling</td><td class="px-5 py-3 text-teal-700 font-medium">Bounded by construction</td><td class="px-5 py-3">Needs step / token caps</td></tr>
+            <tr><td class="px-5 py-3 text-slate-500">Best for</td><td class="px-5 py-3">Known steps ✅ (this task)</td><td class="px-5 py-3">Unknown / branching paths</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Measured callout -->
+      <div class="mt-6 bg-white rounded-xl border border-slate-200 p-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="font-semibold text-slate-900">Measured, not guessed</h3>
+          <span class="text-xs text-slate-400">same Notion brief · real Groq calls</span>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4 text-center">
+          <div class="bg-teal-50 border border-teal-100 rounded-lg p-4">
+            <div class="text-2xl font-bold text-teal-700">3.2×</div>
+            <div class="text-xs text-slate-500 mt-1">agent costs more<br>($0.00068 → $0.00216)</div>
+          </div>
+          <div class="bg-teal-50 border border-teal-100 rounded-lg p-4">
+            <div class="text-2xl font-bold text-teal-700">1.4×</div>
+            <div class="text-xs text-slate-500 mt-1">agent slower<br>(21.6s → 30.1s)</div>
+          </div>
+          <div class="bg-amber-50 border border-amber-100 rounded-lg p-4">
+            <div class="text-2xl font-bold text-amber-700">1 of 2</div>
+            <div class="text-xs text-slate-500 mt-1">test companies where the<br>agent failed outright*</div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-500 mt-4">
+          *On one company the agent's tool-calling broke (4 malformed calls → an ungrounded, source-less brief);
+          a separate agent run burned <b>~95K tokens</b> via retry loops and <b>exhausted the free daily budget</b>.
+          The workflow completed cleanly in every case. Full analysis in
+          <span class="mono text-xs bg-slate-100 px-1 py-0.5 rounded">DECISION_DOC.md</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section id="how">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">How to use it</h2>
+      <p class="text-slate-500 mb-8 max-w-3xl">Two ways to run it: a command line for measurement, or a clean web page for demos. Set-up is one-time and free.</p>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <div class="flex items-center gap-3 mb-3"><span class="w-7 h-7 rounded-full bg-teal-600 text-white text-sm font-bold flex items-center justify-center">1</span><h3 class="font-semibold text-slate-900">Install &amp; add a free key</h3></div>
+          <p class="text-sm text-slate-600 mb-3">Get a free Groq API key (no credit card) from <span class="mono text-xs">console.groq.com/keys</span>.</p>
+          <pre class="code mono"><span class="c"># one-time setup</span>
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+<span class="c"># paste your key into .env</span>
+copy .env.example .env</pre>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <div class="flex items-center gap-3 mb-3"><span class="w-7 h-7 rounded-full bg-teal-600 text-white text-sm font-bold flex items-center justify-center">2</span><h3 class="font-semibold text-slate-900">Generate a brief</h3></div>
+          <p class="text-sm text-slate-600 mb-3">Run either engine on any company. Output is a clean markdown brief.</p>
+          <pre class="code mono"><span class="c"># the deterministic workflow</span>
+<span class="k">python</span> cli.py run --mode workflow --company "Notion"
+
+<span class="c"># the autonomous agent</span>
+<span class="k">python</span> cli.py run --mode agent --company "Notion"</pre>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <div class="flex items-center gap-3 mb-3"><span class="w-7 h-7 rounded-full bg-teal-600 text-white text-sm font-bold flex items-center justify-center">3</span><h3 class="font-semibold text-slate-900">Compare them (the proof)</h3></div>
+          <p class="text-sm text-slate-600 mb-3">Run both on the same input and get a paste-ready cost/latency table.</p>
+          <pre class="code mono"><span class="k">python</span> cli.py benchmark --company "Notion"
+
+<span class="c"># → benchmarks/latest.md</span>
+<span class="c">#   real tokens, cost, wall-time</span></pre>
+        </div>
+      </div>
+
+      <!-- Web UI + URL tip -->
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <h3 class="font-semibold text-slate-900 mb-2">Prefer a web page?</h3>
+          <p class="text-sm text-slate-600 mb-3">A single-page UI (FastAPI + Tailwind) over the same engine — toggle Workflow/Agent and watch cost &amp; latency update live.</p>
+          <pre class="code mono"><span class="k">uvicorn</span> webapp.app:app --reload
+<span class="c"># open http://127.0.0.1:8000</span></pre>
+          <p class="text-xs text-slate-500 mt-3">Ships ready to deploy as a public demo on Hugging Face Spaces — visitors get a few free briefs, then bring their own free key. See <span class="mono text-xs bg-slate-100 px-1 py-0.5 rounded">DEPLOY.md</span>.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6">
+          <h3 class="font-semibold text-slate-900 mb-2">Want full reproducibility?</h3>
+          <p class="text-sm text-slate-600 mb-3">Skip web search and feed it exact URLs — handy when you want a deterministic demo or you already know the sources.</p>
+          <pre class="code mono"><span class="c"># one line (PowerShell-safe)</span>
+<span class="k">python</span> cli.py run --mode workflow --company "Notion" --url https://example.com/about --url https://example.com/news</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">Skills demonstrated</h2>
+      <p class="text-slate-500 mb-8 max-w-3xl">This build is deliberately scoped to surface the skills a Senior AI Program Manager is hired for — judgment first, engineering as the evidence.</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- PM / judgment -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-4">AI Program &amp; Product Judgment</h3>
+          <div class="space-y-3">
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Workflow-vs-agent decision-making</p>
+              <p class="text-sm text-slate-600 mt-1">Knowing when an autonomous agent is <i>over</i>-engineering, and documenting the trigger that would flip the call.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">LLM cost &amp; latency analysis (FinOps)</p>
+              <p class="text-sm text-slate-600 mt-1">Token-level cost modelling, model tiering (cheap 8B vs smart 70B), and measured benchmarking — not guesswork.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Risk &amp; failure-mode planning</p>
+              <p class="text-sm text-slate-600 mt-1">A guardrail mapped to every failure: hallucination, contradictory sources, search outages, runaway cost.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Decision documentation &amp; stakeholder comms</p>
+              <p class="text-sm text-slate-600 mt-1">Translating a technical trade-off into a crisp, defensible written argument leadership can act on.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Technical &amp; Architectural</h3>
+          <div class="space-y-3">
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">LLM orchestration patterns</p>
+              <p class="text-sm text-slate-600 mt-1">Both a deterministic pipeline <i>and</i> a tool-calling agent loop — built from the same shared core.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Prompt engineering &amp; structured output</p>
+              <p class="text-sm text-slate-600 mt-1">Focused step prompts, JSON-mode synthesis, and a tolerant parser for messy model output.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Tool use &amp; retrieval</p>
+              <p class="text-sm text-slate-600 mt-1">Free web search (DuckDuckGo) + robust page-text extraction, with graceful fallback to user URLs.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate-200 p-4">
+              <p class="font-medium text-slate-900 text-sm">Clean architecture &amp; full-stack delivery</p>
+              <p class="text-sm text-slate-600 mt-1">Engine/interface separation, a CLI, a FastAPI + Tailwind UI, instrumentation, and a stranger-runnable README.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Python</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Groq / Llama</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Tool calling</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">JSON-mode output</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">FastAPI</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Tailwind</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">DuckDuckGo search</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Cost benchmarking</span>
+        <span class="text-xs bg-slate-100 text-slate-600 rounded-full px-3 py-1">Guardrail design</span>
+      </div>
+    </section>
+
+    <!-- WHERE ELSE -->
+    <section id="where">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">Where else this can be implemented</h2>
+      <p class="text-slate-500 mb-8 max-w-3xl">The pattern — <span class="mono text-xs">gather → read → summarise → structure → cite</span>, with the workflow-vs-agent judgment on top — transfers to almost any knowledge-work task with known steps.</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">🎫</div>
+          <p class="font-semibold text-slate-900 text-sm">Support-ticket triage</p>
+          <p class="text-sm text-slate-600 mt-1">Classify an incoming ticket, route it, and draft a first reply — a clean fixed pipeline.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">💼</div>
+          <p class="font-semibold text-slate-900 text-sm">Sales &amp; account intelligence</p>
+          <p class="text-sm text-slate-600 mt-1">Pre-call one-pagers on a prospect: who they are, recent news, likely pain points.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">📈</div>
+          <p class="font-semibold text-slate-900 text-sm">Investment / due-diligence briefs</p>
+          <p class="text-sm text-slate-600 mt-1">Summarise filings, news, and product pages into a standardised research memo.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">⚖️</div>
+          <p class="font-semibold text-slate-900 text-sm">Contract &amp; document summarisation</p>
+          <p class="text-sm text-slate-600 mt-1">Extract key terms, obligations, and risks into a consistent structured format.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">📰</div>
+          <p class="font-semibold text-slate-900 text-sm">News &amp; competitor monitoring</p>
+          <p class="text-sm text-slate-600 mt-1">Scheduled digests that watch a market and flag what changed, with sources.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">🛡️</div>
+          <p class="font-semibold text-slate-900 text-sm">Compliance &amp; regulatory watch</p>
+          <p class="text-sm text-slate-600 mt-1">Track rule changes across sources and produce a cited, caveated summary.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">🧑‍💼</div>
+          <p class="font-semibold text-slate-900 text-sm">Recruiting research</p>
+          <p class="text-sm text-slate-600 mt-1">Company/candidate background packs assembled from public sources on demand.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="text-2xl mb-2">📚</div>
+          <p class="font-semibold text-slate-900 text-sm">Internal knowledge reports</p>
+          <p class="text-sm text-slate-600 mt-1">Point it at internal docs/URLs to generate standardised status or research reports.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 ring-1 ring-teal-200">
+          <div class="text-2xl mb-2">🧭</div>
+          <p class="font-semibold text-slate-900 text-sm">Any "should this be an agent?" call</p>
+          <p class="text-sm text-slate-600 mt-1">The real transferable asset: the framework for <b>when to use a workflow vs an agent</b> applies to every LLM automation decision.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 bg-slate-900 text-slate-200 rounded-xl p-6 sm:p-8">
+        <p class="text-sm uppercase tracking-wider text-teal-400 font-semibold mb-2">The reusable principle</p>
+        <p class="text-lg leading-relaxed">
+          Most "AI features" don't need an autonomous agent. When the steps are known,
+          a <b class="text-white">deterministic workflow</b> is cheaper, faster, and safer —
+          and you only reach for an agent when the <i>path itself</i> becomes unknowable.
+          This project is a repeatable template for making — and defending — that call.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-5 py-8 text-sm text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <span>Competitive-Research Brief Generator · MIT-licensed portfolio build</span>
+      <span>Primary deliverable: <span class="mono">DECISION_DOC.md</span></span>
+    </div>
+  </footer>
+
+</body>
+</html>
