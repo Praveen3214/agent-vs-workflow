@@ -13,6 +13,8 @@ license: mit
 
 # Competitive-Research Brief Generator — Workflow vs Agent
 
+▶️ **Try the live app:** https://Poly928829-brief-generator.hf.space &nbsp;·&nbsp; 📖 **[How to use it](HOW_TO_USE.md)** &nbsp;·&nbsp; 🧠 **[The decision doc](DECISION_DOC.md)**
+
 Generate a clean, sourced, one-page competitive brief from a single input
 (a company or topic). Built **two ways** — a deterministic **workflow** and a
 minimal autonomous **agent** — to make one point with real numbers:
