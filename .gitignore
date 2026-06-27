@@ -17,3 +17,6 @@ Thumbs.db
 # Generated run logs (keep the committed examples, ignore scratch runs)
 benchmarks/runs.csv
 benchmarks/latest.md
+
+# Private portfolio-prep notes — never publish
+PORTFOLIO_BRIEF.md
