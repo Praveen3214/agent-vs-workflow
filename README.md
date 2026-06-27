@@ -1,4 +1,3 @@
-<!-- The block below is config for Hugging Face Spaces (ignored on GitHub). See DEPLOY.md. -->
 ---
 title: Competitive Research Brief Generator
 emoji: 📰
@@ -9,6 +8,8 @@ app_port: 7860
 pinned: false
 license: mit
 ---
+
+<!-- The YAML block above is Hugging Face Spaces config (see DEPLOY.md); GitHub shows it as a small table. -->
 
 # Competitive-Research Brief Generator — Workflow vs Agent
 
